@@ -1,26 +1,53 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
-
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import React from "react";
+import "./App.scss";
+import Navbar from "./components/navbar/navbar";
+import MobileMenu from "./components/navbar/mobile_menu/mobile_menu";
+import Header from "./components/header/header";
+import Map from "./components/map/map";
+import Testmonial from "./components/testimonial/testimonial";
+import Contact from "./components/contact/contact";
+import Footer from "./components/footer/footer";
+export class App extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      showMobileNav: false
+    };
+  }
+  setNavbar = open => {
+    this.setState({ showMobileNav: open });
+    console.log(open);
+  };
+  componentDidMount() {
+    window.addEventListener("resize", this.hideMobileNavOnResize);
+  }
+  hideMobileNavOnResize = () => {
+    this.setState({ showMobileNav: false });
+  };
+  closeNav=(hide)=>{
+    console.log(hide);
+    
+    this.setState({ showMobileNav: hide });
+  }
+  render() {
+    return (
+      <div>
+        <Navbar openMobileNav={this.setNavbar} />
+        {(() => {
+          if (!this.state.showMobileNav) {
+            return null;
+          } else {
+            return <MobileMenu closeNav={this.closeNav}/>;
+          }
+        })()}
+        <Header />
+        <Map />
+        <Testmonial />
+        <Contact />
+        <Footer />
+      </div>
+    );
+  }
 }
 
 export default App;

@@ -1,0 +1,15 @@
+.burger {
+  display: none;
+  width: 25px;
+  height: auto;
+  cursor: pointer;
+  @media only screen and (max-width: 901px) {
+    display: block;
+  }
+  .burger-line {
+    width: 100%;
+    height: 3px;
+    margin: 5px 0;
+    background: white;
+  }
+}
