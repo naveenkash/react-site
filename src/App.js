@@ -16,7 +16,6 @@ export class App extends React.Component {
   }
   setNavbar = open => {
     this.setState({ showMobileNav: open });
-    console.log(open);
   };
   componentDidMount() {
     window.addEventListener("resize", this.hideMobileNavOnResize);
@@ -25,8 +24,6 @@ export class App extends React.Component {
     this.setState({ showMobileNav: false });
   };
   closeNav=(hide)=>{
-    console.log(hide);
-    
     this.setState({ showMobileNav: hide });
   }
   render() {
